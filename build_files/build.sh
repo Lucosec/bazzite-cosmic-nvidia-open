@@ -12,6 +12,35 @@ set -ouex pipefail
 # this installs a package from fedora repos
 dnf5 install -y tmux 
 
+# Install COSMIC Desktop Environment
+sudo dnf5 install -y @cosmic-desktop-environment
+
+# Remove GNOME Desktop Environment
+# The 'dnf swap' command remains the same and is recommended for a cleaner transition.
+sudo dnf5 swap -y fedora-release-identity-workstation.noarch fedora-release-identity-cosmic.noarch || { echo "Warning: dnf swap failed, continuing with direct group removal."; }
+
+# The 'dnf group remove' command is now 'dnf environment remove' in dnf5.
+sudo dnf5 environment remove -y "GNOME Desktop Environment"
+
+# Clean up any orphaned packages
+sudo dnf5 autoremove -y
+
+# Configure and Enable the COSMIC Greeter
+sudo systemctl disable gdm.service
+sudo systemctl stop gdm.service
+
+sudo rm -f /etc/systemd/system/display-manager.service
+
+sudo systemctl enable greetd.service
+
+sudo ln -s /usr/lib/systemd/system/greetd.service /etc/systemd/system/display-manager.service
+
+cat << EOF | sudo tee /etc/greetd/config.toml > /dev/null
+[default_session]
+command = "cosmic-comp /usr/bin/cosmic-greeter"
+user = "cosmic-greeter"
+EOF
+
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
