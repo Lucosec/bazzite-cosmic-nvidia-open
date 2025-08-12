@@ -20,7 +20,7 @@ dnf5 install -y @cosmic-desktop-environment
 dnf5 swap -y fedora-release-identity-workstation.noarch fedora-release-identity-cosmic.noarch || { echo "Warning: dnf swap failed, continuing with direct group removal."; }
 
 # The 'dnf group remove' command is now 'dnf environment remove' in dnf5.
-dnf5 environment remove -y "GNOME Desktop Environment"
+dnf5 group remove -y @fedora-workstation 
 
 # Clean up any orphaned packages
 dnf5 autoremove -y
