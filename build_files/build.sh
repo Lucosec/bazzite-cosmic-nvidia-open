@@ -24,11 +24,12 @@ dnf5 group remove -y @fedora-workstation
 
 dnf5 remove -y firefox thunderbird okular libreoffice
 
-# Clean up any orphaned packages
-dnf5 autoremove -y
-
 # Configure and Enable the COSMIC Greeter
 systemctl disable gdm.service
+systemctl enable cosmic-greetd.service
+
+# Clean up any orphaned packages
+dnf5 autoremove -y
 
 # Use a COPR Example:
 #
