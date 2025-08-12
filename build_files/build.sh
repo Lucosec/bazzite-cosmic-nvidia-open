@@ -22,7 +22,7 @@ dnf5 swap -y fedora-release-identity-workstation.noarch fedora-release-identity-
 # The 'dnf group remove' command is now 'dnf environment remove' in dnf5.
 dnf5 group remove -y @fedora-workstation 
 
-dnf5 remove -y firefox thunderbird
+dnf5 remove -y firefox thunderbird okular
 
 # Clean up any orphaned packages
 dnf5 autoremove -y
