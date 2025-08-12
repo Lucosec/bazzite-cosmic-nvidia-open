@@ -26,7 +26,7 @@ dnf5 remove -y firefox thunderbird okular libreoffice
 
 # Configure and Enable the COSMIC Greeter
 systemctl disable gdm.service
-systemctl enable cosmic-greetd.service
+systemctl enable cosmic-greeter.service
 
 # Clean up any orphaned packages
 dnf5 autoremove -y
