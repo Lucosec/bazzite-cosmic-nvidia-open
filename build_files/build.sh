@@ -27,7 +27,6 @@ dnf5 autoremove -y
 
 # Configure and Enable the COSMIC Greeter
 systemctl disable gdm.service
-systemctl stop gdm.service
 
 rm -f /etc/systemd/system/display-manager.service
 
