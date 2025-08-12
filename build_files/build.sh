@@ -32,7 +32,7 @@ rm -f /etc/systemd/system/display-manager.service
 
 systemctl enable greetd.service
 
-cat << EOF | sudo tee /etc/greetd/config.toml > /dev/null
+cat << EOF | tee /etc/greetd/config.toml > /dev/null
 [default_session]
 command = "cosmic-comp /usr/bin/cosmic-greeter"
 user = "cosmic-greeter"
