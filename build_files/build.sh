@@ -15,6 +15,10 @@ dnf5 install -y tmux
 dnf5 copr enable -y ryanabx/cosmic-epoch
 dnf5 -y install @cosmic-desktop @cosmic-desktop-apps
 dnf5 clean all
+
+# use gdm as the greeter
+dnf5 install gdm
+systemctl enable gdm.service
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
